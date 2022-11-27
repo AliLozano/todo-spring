@@ -24,12 +24,23 @@ public class JwtTokenUtil implements Serializable
 
     @Autowired ObjectMapper objectMapper;
 
+    /*
+     * 1. data = desencripta(token)
+     * 2. usuario = data['subject/usuario']
+     * 3. return usuario
+     * */
     public String getUsernameFromToken(String token)
     {
         return getClaimFromToken(token, Claims::getSubject);
 
 
     }
+
+    /*
+    * 1. data = desencripta(token)
+    * 2. expiracion = data['expiración']
+    * 3. return expiración
+    * */
 
     public Date getExpirationDateFromToken(String token)
     {

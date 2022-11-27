@@ -2,7 +2,7 @@ package pe.edu.upao.sistemas.todoapp.accounts.services;
 
 import org.springframework.stereotype.Service;
 import pe.edu.upao.sistemas.todoapp.accounts.models.User;
-import pe.edu.upao.sistemas.todoapp.accounts.repositories.UserRepository;
+import pe.edu.upao.sistemas.todoapp.accounts.repositories.IUserRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +10,9 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    final private UserRepository userRepository;
+    final private IUserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -25,6 +25,12 @@ public class UserService {
         return userRepository.create(user);
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     public User login(String username, String password) {
         Optional<User> userFound = userRepository.list().stream().filter(user -> user.username.equals(username)).findFirst();
 

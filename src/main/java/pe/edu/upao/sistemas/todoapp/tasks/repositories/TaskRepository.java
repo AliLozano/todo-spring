@@ -12,6 +12,5 @@ import java.util.List;
 
 @Service
 public interface TaskRepository extends JpaRepository<Task, Integer> {
-    @Query("select t from Task t")
-    List<Task> listByUser(Integer id);
+
 }

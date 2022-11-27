@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pe.edu.upao.sistemas.todoapp.tasks.models.Task;
 import pe.edu.upao.sistemas.todoapp.tasks.repositories.TaskRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,11 +17,11 @@ public class TaskService {
     }
 
     public List<Task> list() {
-        return taskRepository.list();
+        return taskRepository.findAll();
     }
 
     public Task create(Task task) {
         task.title = task.title.toUpperCase();
-        return taskRepository.create(task);
+        return taskRepository.save(task);
     }
 }
